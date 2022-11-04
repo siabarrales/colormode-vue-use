@@ -1,10 +1,18 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import { useColorMode } from '@vueuse/core'
 import HelloWorld from './components/HelloWorld.vue'
+
+const colorMode = useColorMode()
+const switchTheme = () => {
+  colorMode.value = colorMode.value === 'dark' ? 'light' : 'dark'
+}
 </script>
 
 <template>
+  <header class="header">
+    <h4>Color Mode with VueUse</h4>
+    <button @click="switchTheme" class="btn-theme">Switch Theme</button>
+  </header>
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -16,7 +24,7 @@ import HelloWorld from './components/HelloWorld.vue'
   <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
+<style>
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -27,5 +35,18 @@ import HelloWorld from './components/HelloWorld.vue'
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+.light{
+  background-color: #fff;
+  color: #242424;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+.btn-theme{
+  font-size: 10px;
 }
 </style>
