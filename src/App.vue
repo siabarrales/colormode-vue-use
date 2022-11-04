@@ -1,6 +1,8 @@
 <script setup>
 import { useColorMode } from '@vueuse/core'
 import HelloWorld from './components/HelloWorld.vue'
+import IconSun from './components/IconSun.vue'
+import IconMoon from './components/IconMoon.vue'
 
 const colorMode = useColorMode()
 const switchTheme = () => {
@@ -11,7 +13,10 @@ const switchTheme = () => {
 <template>
   <header class="header">
     <h4>Color Mode with VueUse</h4>
-    <button @click="switchTheme" class="btn-theme">Switch Theme</button>
+    <button @click="switchTheme" class="btn-theme">
+      <IconSun v-if="colorMode === 'light'" /> 
+      <IconMoon v-if="colorMode === 'dark'"/>
+    </button>
   </header>
   <div>
     <a href="https://vitejs.dev" target="_blank">
@@ -47,6 +52,8 @@ const switchTheme = () => {
   height: 50px;
 }
 .btn-theme{
-  font-size: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
 }
 </style>
